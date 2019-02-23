@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue2topic</title>
+</head>
+<body>
+
+<div id="root">
+    <input type="text" id="input" v-model="message">
+
+    <h1>The input value is : {{ message }}</h1>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+    // let data = {
+    //     message: 'Hello World'
+    // };
+
+    // document.querySelector('#input').value = data.message;
+
+    new Vue({   //创建新实例
+        el: '#root',    //绑定元素
+        // data : data
+        data: {     /* 给变量赋值 */
+            message : "type here"
+        }
+    })
+
+</script>
+</body>
+</html>
