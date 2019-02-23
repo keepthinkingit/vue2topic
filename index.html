@@ -7,27 +7,34 @@
 <body>
 
 <div id="root">
-    <input type="text" id="input" v-model="message">
+    <ul>
+        <li v-for="name in names" v-text="name"></li>
+    </ul>
 
-    <h1>The input value is : {{ message }}</h1>
+    <input type="text" id="input" v-model="newName">
+    <button @click="addName">Add name</button>
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>-->
+<script src="./vue-2.6.7.js"></script>
 
 <script>
-    // let data = {
-    //     message: 'Hello World'
-    // };
 
-    // document.querySelector('#input').value = data.message;
-
-    new Vue({   //创建新实例
+    new Vue({
         el: '#root',    //绑定元素
-        // data : data
         data: {     /* 给变量赋值 */
-            message : "type here"
-        }
+            newName: '',
+            names: [
+                'alice', 'bar', 'cindy','john'
+            ]
+        },
+
+        methods: {
+            addName() {
+                this.names.push(this.newName);
+                this.newName = '';
+            }
+        },
     })
 
 </script>
