@@ -5,60 +5,43 @@
     <title>vue2topic</title>
     <script src="./vue-2.6.7.js"></script>
     <style>
-        .is-loading {
-            background: purple;
-        }
     </style>
 </head>
 <body>
 
 <div id="root">
+    <h1>All Tasks</h1>
+
     <ul>
-        <li v-for="name in names" v-text="name"></li>
+        <li v-for="task in tasks" v-text="task.description"></li>
     </ul>
 
-    <input type="text" id="input" v-model="newName">    <!--vue model-->
-    <button @click="addName">Add name</button>  <!--v-on:click="addName"缩写 -->
-    <br>
-    <h1 :title="title">悬停查看提示</h1>
-    <br>
+    <h2>Incomplete Tasks</h2>
 
-    <!--绑定 class 属性, 绑定 click 事件-->
-    <button :class="{ 'is-loading': isLoading }" @click="toggleClass">click me!</button>
-    <!--方法二:设定 disabled 属性-->
-    <button :disabled="active" @click="dis">{{ text }}</button>
-    <br>
+    <ul>
+        <li v-for="task in incompleteTasks" v-text="task.description"></li>
+    </ul>
 </div>
 
 
 <script>
 
     new Vue({
-        el: '#root',    //绑定元素
-        data: {     /* 给变量赋值 */
-            newName: '',
-            names: [
-                'alice', 'bar', 'cindy', 'john'
-            ],
-            title: 'Not so hard to gotcha, is not it ?',
-            isLoading: false,   //设定初始值
-            text: 'click to disable me',
-            active: false,
+        el: '#root',
+        data: {
+            tasks: [
+                { description: 'Go to the store', completed: true},
+                { description: 'Go Fishing', completed: false},
+                { description: 'Make donation', completed: true},
+                { description: 'Make dinner', completed: true},
+                { description: 'Clear computer inbox', completed: false},
+                { description: 'Go to bed', completed: true},
+            ]
         },
 
-        methods: {
-            addName() {
-                this.names.push(this.newName);
-                this.newName = '';
-            },
-
-            toggleClass() {     //点击时进行动作
-                this.isLoading = true;
-            },
-
-            dis(){
-                this.text = 'i have been disabled...';
-                this.active = true;
+        computed: {
+            incompleteTasks() {
+                return this.tasks.filter(task => !task.completed);
             }
         },
     })
