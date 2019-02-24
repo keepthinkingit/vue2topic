@@ -1,37 +1,27 @@
-Vue.component('message', {
-    props: ['title', 'body'],
-
-    data() {        //only return object
-        return {    //页面渲染时传递初始属性值
-            isVisible: true
-        }
-    },
-
+Vue.component('modal', {
     template: `
-        <article class="message" v-show="isVisible">
-            <div class="message-header">
-                {{ title }}
+        <div class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, odit, rerum.
+                    A ad corporis cumque eaque earum eligendi ipsum natus,
+                    quae qui quibusdam ratione, sed,
+                    sunt tenetur totam voluptates voluptatum?
+                </p>
             </div>
-            
-            <!--点击时改变 isVisible 属性-->
-            <button type="button" @click="hideModel">X</button> 
-            <!--第二种方法(简易书写) -->
-            <!--<button type="button" @click="isVisible=false">X</button>-->
-            <div class="message-body">
-                {{ body }}
-            </div>
-        </article>
-`,
-
-
-methods: {
-    hideModel(){
-        this.isVisible = false;
-    }
-}
-
+        </div>
+        
+        <!--$emit 触发当前实例上的事件。附加参数都会传给监听器回调。-->
+        <!--当点击 X 按钮时 , 回调 close , 即: 改变 showModal = false .  -->
+        <button class="modal-close" @click="$emit('close')"></button>
+    </div>
+`
 });
 
 new Vue({
     el: '#root',
+    data: {
+        showModal: false
+    }
 });

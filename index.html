@@ -5,11 +5,19 @@
     <title>vue2topic</title>
     <script src="./vue-2.6.7.js"></script>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bulma/0.7.4/css/bulma.css">
+    <style type="text/css">
+        body {
+            padding-top: 40px;
+        }
+    </style>
 </head>
 <body>
 
 <div id="root" class="container">
-    <message title="paragraph1" body="Lorem sit amet"></message>
+    <!--引入组件 modal , showModal 初始值为 false , 即不可见. -->
+    <modal v-if="showModal" @close="showModal=false"></modal>
+    <!--点击后 showModal=true , 之后转入 modal.-->
+    <button @click="showModal=true">Show surprise</button>
 </div>
 
 <script src="main.js"></script>
