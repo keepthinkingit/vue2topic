@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>vue2topic</title>
+    <script src="./vue-2.6.7.js"></script>
+    <style>
+        .is-loading {
+            background: purple;
+        }
+    </style>
 </head>
 <body>
 
@@ -11,12 +17,19 @@
         <li v-for="name in names" v-text="name"></li>
     </ul>
 
-    <input type="text" id="input" v-model="newName">
-    <button @click="addName">Add name</button>
+    <input type="text" id="input" v-model="newName">    <!--vue model-->
+    <button @click="addName">Add name</button>  <!--v-on:click="addName"缩写 -->
+    <br>
+    <h1 :title="title">悬停查看提示</h1>
+    <br>
+
+    <!--绑定 class 属性, 绑定 click 事件-->
+    <button :class="{ 'is-loading': isLoading }" @click="toggleClass">click me!</button>
+    <!--方法二:设定 disabled 属性-->
+    <button :disabled="active" @click="dis">{{ text }}</button>
+    <br>
 </div>
 
-<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>-->
-<script src="./vue-2.6.7.js"></script>
 
 <script>
 
@@ -25,14 +38,27 @@
         data: {     /* 给变量赋值 */
             newName: '',
             names: [
-                'alice', 'bar', 'cindy','john'
-            ]
+                'alice', 'bar', 'cindy', 'john'
+            ],
+            title: 'Not so hard to gotcha, is not it ?',
+            isLoading: false,   //设定初始值
+            text: 'click to disable me',
+            active: false,
         },
 
         methods: {
             addName() {
                 this.names.push(this.newName);
                 this.newName = '';
+            },
+
+            toggleClass() {     //点击时进行动作
+                this.isLoading = true;
+            },
+
+            dis(){
+                this.text = 'i have been disabled...';
+                this.active = true;
             }
         },
     })
