@@ -14,9 +14,18 @@
 <body>
 
 <div id="root" class="container">
-    <coupon @applied="onCouponApplied" ></coupon>
+    <modal>
+        <!--使用 templete 可以让渲染后的title 父级为 p , 使用 div 则父级为 div  -->
+        <div slot="header">The title</div>
+        <!--<template slot="header">The title 2</template>-->
 
-    <h1 v-if="couponApplied">Your coupon have been verified</h1>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque earum eos explicabo magnam molestiae nihil quam recusandae? Ab at deserunt ducimus in labore natus nisi nostrum praesentium quasi voluptates!
+
+        <div slot="footer">
+            <button class="button is-success">Okay</button>
+            <button class="button">Cancel</button>
+        </div>
+    </modal>
 </div>
 
 <script src="main.js"></script>

@@ -1,16 +1,35 @@
-window.Event = new Vue();   //创建一个统一事件
 
-Vue.component('coupon', {
+Vue.component('modal', {
     template: `
-    <div>
-        <input placeholder="input your coupon" type="text" @blur="onCouponApplied">
+    <div class="modal is-active">
+    
+      <div class="modal-background"></div>
+      
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">
+          <slot name="header"></slot>     <!--动态生成-->
+          </p>
+          
+          <button class="delete" aria-label="close"></button>
+        </header>
+        
+        <section class="modal-card-body">
+          <!-- Content ... -->
+          <slot>
+            <!--Default content here. &lt;!&ndash;可以写一些默认内容在此&ndash;&gt;-->
+          </slot>
+        </section>
+        
+        <footer class="modal-card-foot">
+            <slot name="footer"></slot>
+        </footer>
+        
+      </div>
     </div>
 `,
 
     methods: {
-        onCouponApplied(){
-            Event.$emit('applied');     //传递给 Event
-        }
     }
 });
 
@@ -20,8 +39,5 @@ new Vue({
         couponApplied: false,
     },
 
-    created() {
-        Event.$on('applied', ()=>alert('handle it') )
-    }
 });
 
