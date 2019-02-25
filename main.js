@@ -1,4 +1,4 @@
-
+window.Event = new Vue();   //创建一个统一事件
 
 Vue.component('coupon', {
     template: `
@@ -9,7 +9,7 @@ Vue.component('coupon', {
 
     methods: {
         onCouponApplied(){
-            this.$emit('applied');
+            Event.$emit('applied');     //传递给 Event
         }
     }
 });
@@ -20,10 +20,8 @@ new Vue({
         couponApplied: false,
     },
 
-    methods: {
-        onCouponApplied() {
-            this.couponApplied = true;
-        }
+    created() {
+        Event.$on('applied', ()=>alert('handle it') )
     }
 });
 
