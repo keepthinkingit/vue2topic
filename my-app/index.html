@@ -13,32 +13,12 @@
 
 <body>
 <div id="app" class="container">
-  <!--<script src="/dist/build.js"></script>-->
+  <!--两种表达方式结果相同-->
+  <!--<input type="text" v-model="coupon">  -->
+  <!--<input type="text" :value="coupon" @input="coupon= $event.target.value">-->
 
-  <form action="/create" method="POST" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
-    <div class="control">
-      <label for="name">Project Name:</label>
+  <coupon v-model="coupon"></coupon>
 
-      <input type="text" id="name" name="name" class="input" v-model="form.name">
-
-      <span class="help is-danger" v-if="form.errors.has('name')" v-text="form.errors.get('name')"></span>
-    </div>
-
-    <div class="control">
-      <label for="description">Description:</label>
-
-      <input type="text" id="description" name="description" class="input" v-model="form.description">
-
-      <span class="help is-danger" v-if="form.errors.has('description')" v-text="form.errors.get('description')"></span>
-    </div>
-
-    <div class="control">
-      <div class="button is-primary" :disabled="form.errors.any()">
-        Create
-      </div>
-    </div>
-
-  </form>
 </div>
 <script src="https://cdn.bootcss.com/vue/2.6.6/vue.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
