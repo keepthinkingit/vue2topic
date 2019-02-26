@@ -1,5 +1,6 @@
-import Vue from 'vue'
-import App from './App.vue'
+// import Vue from 'vue'
+
+// import App from './App.vue'
 
 class Errors {
   constructor() {
@@ -82,7 +83,6 @@ class Form {
 
 new Vue({
   el: '#app',
-  render: h => h(App),
 
   data: {
     form: new Form({
@@ -97,4 +97,4 @@ new Vue({
     }
   }
 
-})
+});

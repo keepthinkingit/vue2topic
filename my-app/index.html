@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>my-app</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="/dist/build.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>create form page</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bulma/0.7.4/css/bulma.css">
+  <style>
+    body {
+      padding-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app" class="container"></div>
+<!--<script src="/dist/build.js"></script>-->
+
+<form action="/create" method="POST" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
+  <div class="control">
+    <label for="name">Project Name:</label>
+
+    <input type="text" id="name" name="name" class="input" v-model="form.name">
+
+    <span class="help is-danger" v-if="form.errors.has('name')" v-text="form.errors.get('name')"></span>
+  </div>
+
+  <div class="control">
+    <label for="description">Description:</label>
+
+    <input type="text" id="description" name="description" class="input" v-model="form.description">
+
+    <span class="help is-danger" v-if="form.errors.has('description')" v-text="form.errors.get('description')"></span>
+  </div>
+
+  <div class="control">
+    <div class="button is-primary" :disabled="form.errors.any()">
+      Create
+    </div>
+  </div>
+
+</form>
+
+<script src="https://cdn.bootcss.com/vue/2.6.6/vue.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+<script src="./main.js"></script>
+</body>
 </html>
